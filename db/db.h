@@ -6,7 +6,7 @@
 #include <memory>
 #include <string>
 
-const std::string kDBMarker("\n");
+const std::string kDBMarker("\xFF");
 
 class DB {
 public:

@@ -20,12 +20,8 @@ std::string DB::Get(const std::string& _key) const {
 
     std::string key, value;
     while (key != _key) {
-        while (file_->peek() != kDBMarker.c_str()[0]) {
+        while (static_cast<int>(static_cast<char>(file_->peek())) != static_cast<int>(kDBMarker.c_str()[0])) {
             file_->seekg(-1, file_->cur);
-
-            if (file_->tellg() == -1) {
-                return "";
-            }
         }
 
         file_->seekg(1, file_->cur);
@@ -35,6 +31,10 @@ std::string DB::Get(const std::string& _key) const {
 
         uint64_t key_length = ReadUvarint();
         ReadString(key, key_length);
+
+        if (key != _key && offset == 0) {
+            return "";
+        }
 
         if (key != _key) {
             file_->seekg(offset, file_->beg);
