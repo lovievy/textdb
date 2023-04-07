@@ -11,7 +11,7 @@ void DB::Put(const std::string& key, const std::string& value) const {
     const std::string key_length = EncodeUvarint(key.size());
     const std::string value_length = EncodeUvarint(value.size());
 
-    WriteString({key_length, key, value_length, value, "\n", offset});
+    WriteString({key_length, key, value_length, value, kDBMarker, offset});
 }
 
 std::string DB::Get(const std::string& _key) const {
@@ -20,7 +20,7 @@ std::string DB::Get(const std::string& _key) const {
 
     std::string key, value;
     while (key != _key) {
-        while (file_->peek() != file_->widen('\n')) {
+        while (file_->peek() != kDBMarker.c_str()[0]) {
             file_->seekg(-1, file_->cur);
 
             if (file_->tellg() == -1) {
@@ -80,7 +80,7 @@ void DB::WriteString(const std::string& str) const {
 
 void DB::WriteString(const std::initializer_list<std::string>& strs) const {
     for (const auto& str : strs) {
-        if (str == "\n") {
+        if (str == kDBMarker) {
             WriteMarker();
         } else {
             WriteString(str);
@@ -90,7 +90,7 @@ void DB::WriteString(const std::initializer_list<std::string>& strs) const {
 }
 
 void DB::WriteMarker() const {
-    file_->write("\n", 1);
+    file_->write(kDBMarker.c_str(), 1);
     return;
 }
 

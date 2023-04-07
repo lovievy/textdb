@@ -6,6 +6,8 @@
 #include <memory>
 #include <string>
 
+const std::string kDBMarker("\n");
+
 class DB {
 public:
     explicit DB(const std::string& filename);
