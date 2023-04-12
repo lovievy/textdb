@@ -6,6 +6,8 @@
 #include <memory>
 #include <string>
 
+namespace textdb {
+
 const std::string kDBMarker("\xFF");
 
 class DB {
@@ -30,3 +32,5 @@ private:
 };
 
 std::string EncodeUvarint(uint64_t value);
+
+};  // namespace textdb

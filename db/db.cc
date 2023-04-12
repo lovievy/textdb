@@ -1,5 +1,7 @@
 #include "db.h"
 
+namespace textdb {
+
 DB::DB(const std::string& filename) {
     file_ = std::make_unique<std::fstream>(filename, std::ios::out | std::ios::in | std::ios::app | std::ios::binary | std::ios::ate);
 }
@@ -107,3 +109,5 @@ std::string EncodeUvarint(uint64_t value) {
     result.push_back(value);
     return result;
 }
+
+};  // namespace textdb

@@ -6,6 +6,8 @@
 #include <ctime>
 #include <unordered_map>
 
+using namespace textdb;
+
 TEST(DB, Example) {
     srand(time(nullptr));
 
