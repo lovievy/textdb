@@ -2,7 +2,7 @@
 
 namespace textdb {
 
-std::unique_ptr<DB> DB::Open(const std::string& filename) {
+std::shared_ptr<DB> DB::Open(const std::string& filename) {
     return std::make_unique<DB>(filename);
 }
 

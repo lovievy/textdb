@@ -12,12 +12,12 @@ const std::string kDBMarker("\xFF");
 
 class DB {
 public:
-    static std::unique_ptr<DB> Open(const std::string& filename);
+    static std::shared_ptr<DB> Open(const std::string& filename);
 
     explicit DB(const std::string& filename);
 
     void Put(const std::string& key, const std::string& value) const;
-    
+
     std::string Get(const std::string& _key) const;
 
     void Close();
