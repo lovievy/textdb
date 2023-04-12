@@ -11,29 +11,29 @@ using namespace textdb;
 TEST(DB, Example) {
     srand(time(nullptr));
 
-    auto db = DB("store.textdb");
+    auto db = DB::Open("store.textdb");
     std::unordered_map<std::string, std::string> map;
 
     // Put
     for (int i = 0; i < 5; i++) {
         std::string key = "key_" + std::to_string(i), value = "value_" + std::to_string(rand());
-        db.Put(key, value);
+        db->Put(key, value);
         map[key] = value;
     }
 
     // Get
     for (int i = 0; i < 5; i++) {
         std::string key = "key_" + std::to_string(i);
-        EXPECT_EQ(map[key], db.Get(key));
+        EXPECT_EQ(map[key], db->Get(key));
     }
 
     // Non-existent key
     for (int i = 5; i < 10; i++) {
         std::string key = "key_" + std::to_string(i);
-        EXPECT_EQ("", db.Get(key));
+        EXPECT_EQ("", db->Get(key));
     }
 
-    db.Close();
+    db->Close();
 }
 
 TEST(Uvarint, EncodeUvarint) {

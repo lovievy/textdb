@@ -2,6 +2,10 @@
 
 namespace textdb {
 
+std::unique_ptr<DB> DB::Open(const std::string& filename) {
+    return std::make_unique<DB>(filename);
+}
+
 DB::DB(const std::string& filename) {
     file_ = std::make_unique<std::fstream>(filename, std::ios::out | std::ios::in | std::ios::app | std::ios::binary | std::ios::ate);
 }
