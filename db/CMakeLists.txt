@@ -1,5 +1,5 @@
 add_library(textdb_shared SHARED db.cc)
-add_library(textdb_static STATIC $<TARGET_OBJECTS:textdb_shared>)
+add_library(textdb_static STATIC db.cc)
 
 target_include_directories(textdb_shared INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
 target_include_directories(textdb_static INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
