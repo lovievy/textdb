@@ -20,7 +20,7 @@ std::string DB::Get(const std::string& _key) const {
 
     std::string key, value;
     while (key != _key) {
-        while (static_cast<int>(static_cast<char>(file_->peek())) != static_cast<int>(kDBMarker.c_str()[0])) {
+        while (static_cast<char>(file_->peek()) != kDBMarker.c_str()[0]) {
             file_->seekg(-1, file_->cur);
         }
 
