@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.11...3.21)
 project(
         TextDB
-        VERSION 0.1
+        VERSION 1.0
         DESCRIPTION "An text database library"
         LANGUAGES CXX
 )
