@@ -37,3 +37,21 @@ int main() {
     return 0;
 }
 ```
+
+## Benchmark
+
+```
+Run on (12 X 2592.01 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x6)
+  L1 Instruction 32 KiB (x6)
+  L2 Unified 256 KiB (x6)
+  L3 Unified 12288 KiB (x1)
+Load Average: 0.24, 0.10, 0.10
+------------------------------------------------------------
+Benchmark                  Time             CPU   Iterations
+------------------------------------------------------------
+DB_Put                  3980 ns         3999 ns       171484
+DB_Get                 10938 ns        10943 ns        64261
+DB_GetNonexistent     256633 ns       256631 ns         2585
+```
